@@ -1,0 +1,19 @@
+{
+  "name": "generate-pdf",
+  "version": "0.0.1",
+  "description": "Generates PDF invoice",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bookeapp/generate-pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bookeapp/generate-pdf/issues"
+  },
+  "homepage": "https://github.com/bookeapp/generate-pdf#readme",
+  "dependencies": {
+    "eslint": "^7.1.0",
+    "html-pdf": "^2.2.0",
+    "pug": "^2.0.3"
+  }
+}

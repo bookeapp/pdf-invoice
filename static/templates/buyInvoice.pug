@@ -1,0 +1,304 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    style.
+      @import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700';
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 794px;
+        width: 592px;
+        margin: auto;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      strong {
+        font-weight: 700;
+      }
+      #container {
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+        height: 100%;
+        position: relative;
+        padding: 4%;
+      }
+      #header {
+        padding-bottom: 1em;
+        border-bottom: 3px solid #c4183c;
+      }
+      #header > #reference {
+        text-align: right;
+      }
+      #header > #reference > p {
+        margin: 0.2em 0;
+      }
+      #header > #reference > .invoiceNumber {
+        font-size: 1.2em;
+      }
+      #header > #reference > .invoiceNumber strong {
+        color: #c4183c;
+      }
+      #fromTo {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        -webkit-justify-content: space-between;
+        margin-top: 2em;
+      }
+      #fromTo h3 {
+        margin: 0 0 1em 0;
+      }
+      #fromTo > #from, #fromTo > #to {
+        position: relative;
+        flex: 1;
+        -webkit-flex: 1;
+        padding: 1.6em 1em 1em 1em;
+        border-radius: 0.5em;
+      }
+      #fromTo > #from::before, #fromTo > #to::before {
+        position: absolute;
+        top: -0.7em;
+        left: 0;
+        right: 0;
+        width: 40%;
+        margin: auto;
+        padding: 0.2em;
+        border-radius: 1em;
+        text-align: center;
+        background-color: #c4183c;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      #fromTo > #from {
+        box-shadow: 0 0 0 2px #c4183c inset;
+        margin-right: 1em;
+      }
+      #fromTo > #from::before {
+        content: '#{seller}';
+      }
+      #fromTo > #from::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        margin: auto;
+        margin-right: -1em;
+        border-style: solid;
+        border-width: 2em 0 2em 1em;
+        border-color: transparent transparent transparent #c4183c;
+      }
+      #fromTo > #to::before {
+        content: '#{buyer}';
+      }       
+      #fromTo > #from > div, #fromTo > #to > div {
+        margin-top: 0.2em;
+      }
+      #extraInfo {
+        margin-top: 1em;
+        padding: 1em;
+        border-radius: 0.5em;
+      }
+      #extraInfo > div {
+        padding: 0.2em 0;
+      }
+      #extraInfo .description {
+        margin-top: 1em;
+      }
+      #vatRates {
+        margin-top: 1em;
+        border-radius: 0.5em;
+      }
+      #vatRates > table {
+        width: 100%;
+      }
+      #vatRates > table > thead {
+        background-color: #c4183c;
+        color: #fff;
+      }
+      #vatRates > table > tfoot > tr > td {
+        text-align: center;
+      }
+      #vatRates > table > tfoot > tr > td:first-child {
+        border-bottom-left-radius: 0.5em;
+      }
+      #vatRates > table > tfoot > tr > td:last-child {
+        border-bottom-right-radius: 0.5em;
+      }
+      #vatRates > table > thead > tr > th:first-child {
+        border-top-left-radius: 0.5em;
+      }
+      #vatRates > table > thead > tr > th:last-child {
+        border-top-right-radius: 0.5em;
+      }
+      #vatRates > table > tbody > tr > td {
+        border-bottom: 2px solid #eaeaea;
+        text-align: right;
+      }
+      #vatRates > table > tbody > tr > td:first-child {
+        font-weight: 700;
+      }
+      #vatRates > table > tbody > tr > td + td {
+        border-left: 2px solid #eaeaea;
+      }
+      #vatRates > table td, #vatRates > table th {
+        width: 30%;
+        padding: 0.5em;
+      }
+      #vatRates > table td:first-child, #vatRates > table th:first-child {
+        width: 10%;
+        padding-left: 1em;
+      }
+      #vatRates > table td:last-child, #vatRates > table th:last-child {
+        padding-right: 1em;
+      }
+      #summary {
+        text-align: right;
+        margin-top: 2em;
+      }
+      #summary > div {
+        margin: 0.2em 0;
+        padding: 0 1em;
+      }
+      #summary > .total {
+        display: inline-block;
+        margin-left: auto;
+        margin-top: 1em;
+        padding: 1em;
+        border-radius: 2em;
+        box-shadow: 0 0 0 2px #c4183c inset;
+      }
+      #summary > .total strong {
+        font-size: 1.2em;
+      }
+      #footer {
+        margin-top: auto;
+        padding-top: 1em;
+        border-top: 2px solid #eaeaea;
+        text-align: center;
+      }
+    #container
+      #header
+        #reference
+          if globalInvoiceNumber
+            p(class='invoiceNumber')
+              strong #{exampleInvoice} #: 
+              | #{globalInvoiceNumber}
+          if globalVsValue
+            p
+              strong #{vs}: 
+              | #{globalVsValue}
+          if globalKsValue
+            p
+              strong #{ks}: 
+              | #{globalKsValue}
+          if globalSsValue
+            p
+              strong #{ss}: 
+              | #{globalSsValue}
+      #fromTo
+        #from
+          if recipientBusinessName
+            h3 #{recipientBusinessName}
+          if recipientVatId
+            div
+            strong #{vatId}: 
+            | #{recipientVatId}
+          if recipientBusinessId
+            div
+              strong #{businessId}: 
+              | #{recipientBusinessId}
+          if recipientBankAccount
+            div
+              strong #{bankAccount}: 
+              | #{recipientBankAccount}
+              if recipientBankCode
+                | /#{recipientBankCode}
+          if recipientBusinessAddress
+            div
+            strong #{address}: 
+            | #{recipientBusinessAddress}
+        #to
+          if senderBusinessName
+            h3 #{senderBusinessName}
+          if senderVatId
+            div
+              strong #{vatId}: 
+              | #{senderVatId}
+          if senderBusinessId
+            div
+              strong #{businessId}: 
+              | #{senderBusinessId}
+          if senderBankAccount
+            div
+              strong #{bankAccount}: 
+              | #{senderBankAccount}
+              if senderBankCode
+                | /#{senderBankCode}
+          if senderBusinessAddress
+            div
+            strong #{address}: 
+            | #{senderBusinessAddress}
+      #extraInfo
+        if globalIssueDate
+          div
+            strong #{issuedAt}: 
+            | #{globalIssueDate}
+        if globalTaxDate
+          div
+            strong #{vatAppliedAt}: 
+            | #{globalTaxDate}
+        if globalDescription
+          div(class='description')
+            strong #{description}: 
+            em #{globalDescription}
+      #vatRates
+        table
+          thead
+            tr
+              th #{vat} %
+              th #{base}
+              th #{vat}
+              th #{total}
+          tbody
+            - var length = globalAmountVatRates.length
+            - for (var row = 0; row < length; row++) {
+                - var rowData = globalAmountVatRates[row]
+                tr
+                  td #{rowData && rowData.rate}%
+                  td #{rowData && rowData.base}
+                  td #{rowData && rowData.value}
+                  td #{rowData && rowData.total}
+            - }
+          tfoot
+            tr
+              td(colspan=6)
+                em
+                  | #{amountExpressedIn} 
+                  strong #{globalCurrency}
+      #summary
+        div
+          | #{totalExclVat}: 
+          strong #{globalTotalAmounts.base} #{globalCurrency}
+        div
+          | #{totalVat}: 
+          strong #{globalTotalAmounts.vat} #{globalCurrency}
+        div(class='total')
+         | #{totalAmount}: 
+         strong #{globalTotalAmounts.total} #{globalCurrency}
+      #footer
+        em
+          strong #{disclaimer}: 
+          | #{disclaimerMessage}!
