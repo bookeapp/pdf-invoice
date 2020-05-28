@@ -51,8 +51,12 @@ const global = {
   ]
 };
 
+//Output file sellInvoiceCS.pdf
 PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'cs', fileName: 'sellInvoiceCS.pdf' });
-PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'cs', fileName: 'buyInvoiceCS.pdf' });
-PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'en', fileName: 'sellInvoiceEN.pdf' });
+//Output to buffer
+PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'cs'});
+//Output to buffer
+PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'en' });
+//Output file buyInvoiceEN.pdf
 PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'en', fileName: 'buyInvoiceEN.pdf' });
 ```
