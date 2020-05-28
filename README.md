@@ -1,7 +1,8 @@
 # generate-pdf
 
-How to use:
+### How to use:
 
+```javascript
 const sender = {
   businessName: 'Sender company s.r.o.',
   businessAddress: 'Czech Republic, Prague',
@@ -54,3 +55,4 @@ PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'cs', fileName
 PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'cs', fileName: 'buyInvoiceCS.pdf' });
 PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'en', fileName: 'sellInvoiceEN.pdf' });
 PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'en', fileName: 'buyInvoiceEN.pdf' });
+```
