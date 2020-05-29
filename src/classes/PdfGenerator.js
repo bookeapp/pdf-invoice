@@ -48,7 +48,6 @@ export default class PdfGenerator {
       globalInvoiceNumber: this.global.vsValue || moment(currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT),
       globalVsValue: this.global.vsValue,
       globalKsValue: this.global.ksValue,
-      globalSsValue: this.global.ssValue,
       globalCurrency: this.global.currency,
       globalDescription: this.global.description,
       globalIssueDate: Utils.formatDate(this.global.issueDate),

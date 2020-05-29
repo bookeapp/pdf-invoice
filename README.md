@@ -24,7 +24,6 @@ const global = {
   taxDate: new Date('2018-09-11'),
   vsValue: '100200300',
   ksValue: '1881',
-  ssValue: '7755',
   currency: 'CZK',
   description: 'Payment for goods or services...',
   amountVatRates: [
@@ -53,10 +52,10 @@ const global = {
 
 //Output file sellInvoiceCS.pdf
 PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'cs', fileName: 'sellInvoiceCS.pdf' });
+//Output file buyInvoiceEN.pdf
+PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'en', fileName: 'buyInvoiceEN.pdf' });
 //Output to buffer
 PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'cs'});
 //Output to buffer
 PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'en' });
-//Output file buyInvoiceEN.pdf
-PdfGenerator.createBuyInvoice({ sender, recipient, global, lang: 'en', fileName: 'buyInvoiceEN.pdf' });
 ```

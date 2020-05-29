@@ -87,7 +87,7 @@ html
         box-shadow: 0 0 0 2px #c4183c inset;
       }
       #fromTo > #from::before {
-        content: "#{seller}";
+        content: "#{supplier}";
       }
       #fromTo > #from::after {
         content: "";
@@ -104,7 +104,7 @@ html
         border-color: transparent transparent transparent #c4183c;
       }
       #fromTo > #to::before {
-        content: "#{buyer}";
+        content: "#{customer}";
       }
       #fromTo > #from > div,
       #fromTo > #to > div {
@@ -205,16 +205,12 @@ html
               | #{globalInvoiceNumber}
           if globalVsValue
             p
-              strong #{vs}: 
+              strong #{variableSymbol}: 
               | #{globalVsValue}
           if globalKsValue
             p
-              strong #{ks}: 
+              strong #{constantCode}: 
               | #{globalKsValue}
-          if globalSsValue
-            p
-              strong #{ss}: 
-              | #{globalSsValue}
       #fromTo
         #from
           if recipientBusinessName
@@ -261,11 +257,11 @@ html
       #extraInfo
         if globalIssueDate
           div
-            strong #{issuedAt}: 
+            strong #{invoiceDate}: 
             | #{globalIssueDate}
         if globalTaxDate
           div
-            strong #{vatAppliedAt}: 
+            strong #{dateOfTaxableSupply}: 
             | #{globalTaxDate}
         if globalDescription
           div(class='description')
