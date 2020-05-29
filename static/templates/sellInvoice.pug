@@ -202,12 +202,12 @@ html
               | #{globalInvoiceNumber}
           if globalVsValue
             p
-              strong #{vs}: 
-              | #{variableSymbol}
+              strong #{variableSymbol}: 
+              | #{globalVsValue}
           if globalKsValue
             p
-              strong #{ks}: 
-              | #{constantCode}
+              strong #{constantCode}: 
+              | #{globalKsValue}
       #fromTo
         #from
           if senderBusinessName
