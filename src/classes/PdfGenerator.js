@@ -1,62 +1,23 @@
-const {
-  DEFAULT_LANGUAGE,
-  DEFAULT_INVOICE_NUMBER_FORMAT,
-  DATE_FORMAT,
-  MONEY_STRING_PRECISION,
-  LOCALES_PATH,
-  TEMPLATES
-} = require('../config');
-const path = require('path');
-const fs = require('fs');
-const moment = require('moment');
-const htmlToPdf = require('html-pdf');
-const pug = require('pug');
+import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
+import Utils from "./Utils.js";
+import htmlToPdf from "html-pdf";
+import moment from "moment";
+import pug from "pug";
 
+export default class PdfGenerator {
+  static createSellInvoice({ fileName, ...restParams }) {
+    return (new PdfGenerator(restParams)).getSellInvoice(fileName);
+  }
+  
+  static createBuyInvoice({ fileName, ...restParams }) {
+    return (new PdfGenerator(restParams)).getBuyInvoice(fileName);
+  }
 
-class PdfGenerator {
   constructor({ sender, recipient, global, lang = DEFAULT_LANGUAGE }) {
     this.sender = sender;
     this.recipient = recipient;
     this.global = global;
-    this.texts = JSON.parse(this.loadLangFile(lang));
-  }
-
-  loadLangFile(lang) {
-    const langFile = path.join(LOCALES_PATH, `${lang}.json`);
-    if (fs.existsSync(langFile)) return fs.readFileSync(langFile);
-    else return this.loadLangFile(DEFAULT_LANGUAGE);
-  }
-
-  formatDate(date) {
-    return date && moment(date).format(DATE_FORMAT);
-  }
-
-  normalizeVatRates(vatRates, precision = MONEY_STRING_PRECISION) {
-    return vatRates.map(({ rate, base, value }) => {
-      return {
-        rate,
-        base: base.toFixed(precision),
-        value: value.toFixed(precision),
-        total: (base + value).toFixed(precision)
-      };
-    });
-  }
-
-  getTotalAmounts(vatRates, precision = MONEY_STRING_PRECISION) {
-    const values = vatRates.reduce(
-      (prevValue, currentValue) => {
-        const base = prevValue.base + currentValue.base;
-        const value = prevValue.value + currentValue.value;
-        const total = base + value;
-        return { base, value, total };
-      },
-      { base: 0, value: 0, total: 0 }
-    );
-    return {
-      base: values.base.toFixed(precision),
-      vat: values.value.toFixed(precision),
-      total: values.total.toFixed(precision)
-    };
+    this.texts = JSON.parse(Utils.loadLangFile(lang));
   }
 
   getSellInvoice(fileName = null) {
@@ -89,16 +50,16 @@ class PdfGenerator {
       globalKsValue: this.global.ksValue,
       globalSsValue: this.global.ssValue,
       globalCurrency: this.global.currency,
-      globalIssueDate: this.formatDate(this.global.issueDate),
-      globalTaxDate: this.formatDate(this.global.taxDate),
       globalDescription: this.global.description,
-      globalAmountVatRates: this.normalizeVatRates(this.global.amountVatRates),
-      globalTotalAmounts: this.getTotalAmounts(this.global.amountVatRates)
+      globalIssueDate: Utils.formatDate(this.global.issueDate),
+      globalTaxDate: Utils.formatDate(this.global.taxDate),
+      globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),
+      globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates)
     });
     return this.getDocument(fileName, invoiceHtml);
   }
 
-  async getDocument(fileName, html) {
+  getDocument(fileName, html) {
     return new Promise((resolve, reject) => {
       const pdf = htmlToPdf.create(html);
       const callback = (error, result) => {
@@ -110,14 +71,3 @@ class PdfGenerator {
     });
   }
 }
-
-PdfGenerator.createSellInvoice = ({ fileName, ...restParams }) => {
-  return (new PdfGenerator(restParams)).getSellInvoice(fileName);
-};
-
-PdfGenerator.createBuyInvoice = ({ fileName, ...restParams }) => {
-  return (new PdfGenerator(restParams)).getBuyInvoice(fileName);
-};
-
-
-module.exports = PdfGenerator;

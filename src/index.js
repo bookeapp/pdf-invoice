@@ -1,3 +1,4 @@
-const PdfGenerator = require('./classes/PdfGenerator');
+/* eslint-disable filenames/match-exported */
+import PdfGenerator from "./classes/PdfGenerator.js";
 
-module.exports = PdfGenerator;
+export default PdfGenerator;

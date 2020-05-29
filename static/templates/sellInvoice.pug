@@ -5,102 +5,106 @@ html
   body
     style.
       @import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700';
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
       }
       body {
-        height: 794px;
         width: 592px;
+        height: 794px;
         margin: auto;
         font-family: 'Roboto', sans-serif;
         font-size: 12px;
       }
       table {
-        border-collapse: collapse;
         border-spacing: 0;
+        border-collapse: collapse;
       }
       strong {
-        font-weight: 700;
+        font-weight: bold;
       }
       #container {
-        display: flex;
-        display: -webkit-flex;
-        flex-direction: column;
-        -webkit-flex-direction: column;
-        height: 100%;
         position: relative;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
         padding: 4%;
       }
       #header {
         padding-bottom: 1em;
         border-bottom: 3px solid #007bff;
       }
-      #header > #reference {
+      #header > div {
         text-align: right;
       }
-      #header > #reference > p {
+      #header > div > p {
         margin: 0.2em 0;
       }
-      #header > #reference > .invoiceNumber {
+      #header > div > .invoiceNumber {
         font-size: 1.2em;
       }
       #fromTo {
-        display: flex;
         display: -webkit-flex;
-        justify-content: space-between;
+        display: flex;
         -webkit-justify-content: space-between;
+        justify-content: space-between;
         margin-top: 2em;
       }
       #fromTo h3 {
         margin: 0 0 1em 0;
       }
-      #fromTo > #from, #fromTo > #to {
+      #fromTo > #from,
+      #fromTo > #to {
         position: relative;
-        flex: 1;
         -webkit-flex: 1;
+        flex: 1;
         padding: 1.6em 1em 1em 1em;
         border-radius: 0.5em;
       }
-      #fromTo > #from::before, #fromTo > #to::before {
+      #fromTo > #from::before,
+      #fromTo > #to::before {
         position: absolute;
         top: -0.7em;
-        left: 0;
         right: 0;
+        left: 0;
         width: 40%;
         margin: auto;
         padding: 0.2em;
         border-radius: 1em;
-        text-align: center;
         background-color: #007bff;
         color: #fff;
+        text-align: center;
         text-transform: uppercase;
       }
       #fromTo > #from {
-        box-shadow: 0 0 0 2px #007bff inset;
         margin-right: 1em;
+        box-shadow: 0 0 0 2px #007bff inset;
       }
       #fromTo > #from::before {
-        content: '#{seller}';
+        content: "#{seller}";
       }
       #fromTo > #from::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
-        bottom: 0;
         right: 0;
+        bottom: 0;
         width: 0;
         height: 0;
         margin: auto;
         margin-right: -1em;
-        border-style: solid;
         border-width: 2em 0 2em 1em;
+        border-style: solid;
         border-color: transparent transparent transparent #007bff;
       }
       #fromTo > #to::before {
-        content: '#{buyer}';
-      }       
-      #fromTo > #from > div, #fromTo > #to > div {
+        content: "#{buyer}";
+      }
+      #fromTo > #from > div,
+      #fromTo > #to > div {
         margin-top: 0.2em;
       }
       #extraInfo {
@@ -145,25 +149,28 @@ html
         text-align: right;
       }
       #vatRates > table > tbody > tr > td:first-child {
-        font-weight: 700;
+        font-weight: bold;
       }
       #vatRates > table > tbody > tr > td + td {
         border-left: 2px solid #eaeaea;
       }
-      #vatRates > table td, #vatRates > table th {
+      #vatRates > table td,
+      #vatRates > table th {
         width: 30%;
         padding: 0.5em;
       }
-      #vatRates > table td:first-child, #vatRates > table th:first-child {
+      #vatRates > table td:first-child,
+      #vatRates > table th:first-child {
         width: 10%;
         padding-left: 1em;
       }
-      #vatRates > table td:last-child, #vatRates > table th:last-child {
+      #vatRates > table td:last-child,
+      #vatRates > table th:last-child {
         padding-right: 1em;
       }
       #summary {
-        text-align: right;
         margin-top: 2em;
+        text-align: right;
       }
       #summary > div {
         margin: 0.2em 0;
@@ -171,8 +178,8 @@ html
       }
       #summary > .total {
         display: inline-block;
-        margin-left: auto;
         margin-top: 1em;
+        margin-left: auto;
         padding: 1em;
         border-radius: 2em;
         box-shadow: 0 0 0 2px #007bff inset;
@@ -188,7 +195,7 @@ html
       }
     #container
       #header
-        #reference
+        div
           if globalInvoiceNumber
             p(class='invoiceNumber')
               strong #{invoice} #: 

@@ -1,26 +1,31 @@
-const DEFAULT_LANGUAGE = 'en';
+import { dirname } from "path";
+import { fileURLToPath as fileUrlToPath } from "url";
 
-const DEFAULT_INVOICE_NUMBER_FORMAT = 'YYYYMMDDHHmmSS';
+export const DIR_NAME = dirname(fileUrlToPath(import.meta.url));
 
-const DATE_FORMAT = 'DD.MM.YYYY';
+export const DEFAULT_LANGUAGE = "en";
 
-const MONEY_STRING_PRECISION = 2;
+export const DEFAULT_INVOICE_NUMBER_FORMAT = "YYYYMMDDHHmmSS";
 
-const LOCALES_PATH = `${__dirname}/../static/locales`;
+export const DATE_FORMAT = "DD.MM.YYYY";
 
-const TEMPLATES_PATH = `${__dirname}/../static/templates`;
+export const MONEY_STRING_PRECISION = 2;
 
-const TEMPLATES = {
+export const LOCALES_PATH = `${DIR_NAME}/../static/locales`;
+
+export const TEMPLATES_PATH = `${DIR_NAME}/../static/templates`;
+
+export const TEMPLATES = {
   SELL_INVOICE_PATH: `${TEMPLATES_PATH}/sellInvoice.pug`,
-  BUY_INVOICE_PATH: `${TEMPLATES_PATH}/buyInvoice.pug`,
+  BUY_INVOICE_PATH: `${TEMPLATES_PATH}/buyInvoice.pug`
 };
 
-module.exports = {
+export default {
   DEFAULT_LANGUAGE,
   DEFAULT_INVOICE_NUMBER_FORMAT,
   DATE_FORMAT,
   MONEY_STRING_PRECISION,
   LOCALES_PATH,
   TEMPLATES_PATH,
-  TEMPLATES,
+  TEMPLATES
 };

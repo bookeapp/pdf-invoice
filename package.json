@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Generates PDF invoice",
   "main": "src/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/bookeapp/generate-pdf.git"
@@ -12,8 +13,18 @@
   },
   "homepage": "https://github.com/bookeapp/generate-pdf#readme",
   "dependencies": {
-    "eslint": "^7.1.0",
     "html-pdf": "^2.2.0",
+    "moment": "^2.26.0",
     "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-sort-class-members": "^1.7.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
+    "eslint-plugin-unicorn": "^19.0.1"
   }
 }
