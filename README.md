@@ -51,7 +51,7 @@ const global = {
 };
 
 (async() => {
-  console.log("Creating invoices...");
+  console.log('Creating invoices...');
   //Output file sellInvoiceCS.pdf
   await PdfGenerator.createSellInvoice({ sender, recipient, global, lang: 'cs', fileName: 'sellInvoiceCS.pdf' });
   //Output file buyInvoiceEN.pdf
