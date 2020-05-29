@@ -1,3 +1,4 @@
-node_modules
-demo
-files
+/node_modules
+/demo
+/files
+.DS_Store
