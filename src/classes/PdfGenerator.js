@@ -59,9 +59,9 @@ export default class PdfGenerator {
     return this.getDocument(fileName, invoiceHtml);
   }
 
-  getDocument(fileName, html) {
+  getDocument(fileName, invoiceHtml) {
     return new Promise((resolve, reject) => {
-      const pdf = htmlToPdf.create(html);
+      const pdf = htmlToPdf.create(invoiceHtml);
       const callback = (error, result) => {
         if (error) reject(error);
         else resolve(result);
