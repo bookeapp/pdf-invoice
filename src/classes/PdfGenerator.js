@@ -45,7 +45,8 @@ export default class PdfGenerator {
       senderVatId: this.sender.vatId,
       senderBankAccount: this.sender.bankAccount,
       senderBankCode: this.sender.bankCode,
-      globalInvoiceNumber: this.global.vsValue || moment(currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT),
+      globalInvoiceNumber: this.global.vsValue
+        || moment(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT),
       globalVsValue: this.global.vsValue,
       globalKsValue: this.global.ksValue,
       globalCurrency: this.global.currency,
