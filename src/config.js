@@ -16,8 +16,8 @@ export const LOCALES_PATH = `${DIR_NAME}/../static/locales`;
 export const TEMPLATES_PATH = `${DIR_NAME}/../static/templates`;
 
 export const TEMPLATES = {
-  SELL_INVOICE_PATH: `${TEMPLATES_PATH}/sellInvoice.pug`,
-  BUY_INVOICE_PATH: `${TEMPLATES_PATH}/buyInvoice.pug`
+  SELL_INVOICE_PATH: `${TEMPLATES_PATH}/sell-invoice.pug`,
+  BUY_INVOICE_PATH: `${TEMPLATES_PATH}/buy-invoice.pug`
 };
 
 export default {

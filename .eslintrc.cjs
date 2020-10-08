@@ -97,13 +97,13 @@ module.exports = {
     ],
     "filenames/match-exported": [
       "error",
-      null,
+      "kebab",
       null,
       true
     ],
     "filenames/match-regex": [
       "error",
-      "^[a-z]*([A-Z][a-z]+)*[A-Z]?$"
+      "^[a-z0-9-]+$"
     ],
     "for-direction": "error",
     "func-call-spacing": [

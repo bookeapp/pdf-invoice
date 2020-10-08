@@ -1,5 +1,5 @@
-import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
-import Utils from "./Utils.js";
+import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config";
+import Utils from "./utils";
 import htmlToPdf from "html-pdf";
 import moment from "moment";
 import pug from "pug";

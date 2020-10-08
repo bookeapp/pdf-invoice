@@ -1,4 +1,4 @@
-import { DATE_FORMAT, DEFAULT_LANGUAGE, LOCALES_PATH, MONEY_STRING_PRECISION } from "../config.js";
+import { DATE_FORMAT, DEFAULT_LANGUAGE, LOCALES_PATH, MONEY_STRING_PRECISION } from "../config";
 import fs from "fs";
 import moment from "moment";
 import path from "path";
