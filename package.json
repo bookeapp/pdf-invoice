@@ -4,6 +4,10 @@
   "private": true,
   "main": "src/index.js",
   "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
+  },
   "dependencies": {
     "html-pdf": "^2.2.0",
     "moment": "^2.26.0",
@@ -17,6 +21,19 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-sort-class-members": "^1.7.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
-    "eslint-plugin-unicorn": "^20.1.0"
+    "eslint-plugin-unicorn": "^20.1.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "git add"
+    ]
   }
 }
