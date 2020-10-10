@@ -61,6 +61,10 @@ module.exports = {
         "allowSingleLine": true
       }
     ],
+    "capitalized-comments": [
+      "error",
+      "always"
+    ],
     "comma-dangle": [
       "error",
       "never"
