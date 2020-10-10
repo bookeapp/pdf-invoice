@@ -527,9 +527,13 @@ module.exports = {
       "error",
       "never"
     ],
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
     "space-in-parens": [
       "error",
-      "never"
+      "never",
     ],
     "space-infix-ops": "error",
     "space-unary-ops": [
