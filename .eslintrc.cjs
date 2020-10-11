@@ -107,7 +107,7 @@ module.exports = {
     ],
     "filenames/match-regex": [
       "error",
-      "^[a-z0-9-]+$"
+      "^[a-z-]+$"
     ],
     "for-direction": "error",
     "func-call-spacing": [
