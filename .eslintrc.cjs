@@ -134,7 +134,7 @@ module.exports = {
     "guard-for-in": "error",
     "id-match": [
       "error",
-      "^(([A-Z]?[a-z]+)+[A-Z]?|[A-Z](_?[A-Z])+)$",
+      "^(?![iI]s[A-Z])(([A-Z]?[a-z]+)+[A-Z]?|[A-Z](_?[A-Z])+)$",
       {
         "onlyDeclarations": true
       }
@@ -142,11 +142,6 @@ module.exports = {
     "id-length": [
       "error",
       {
-        "exceptions": [
-          "a",
-          "b",
-          "c"
-        ],
         "min": 2,
         "properties": "never"
       }
