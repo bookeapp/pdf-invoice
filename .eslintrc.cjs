@@ -3,13 +3,10 @@ module.exports = {
     "es6": true,
     "node": true
   },
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
   },
   "plugins": [
     "filenames",
@@ -18,7 +15,9 @@ module.exports = {
     "promise",
     "sort-class-members",
     "sort-imports-es6-autofix",
-    "unicorn"
+    "sort-imports-es6-autofix",
+    "unicorn",
+    "node"
   ],
   "settings": {
     "import/resolver": "node"
@@ -45,8 +44,8 @@ module.exports = {
     "arrow-spacing": [
       "error",
       {
-        "before": true,
-        "after": true
+        "after": true,
+        "before": true
       }
     ],
     "block-scoped-var": "error",
@@ -118,13 +117,13 @@ module.exports = {
       "error",
       "never"
     ],
-    "function-paren-newline": [
-      "error",
-      "consistent"
-    ],
     "func-style": [
       "error",
       "expression"
+    ],
+    "function-paren-newline": [
+      "error",
+      "consistent"
     ],
     "generator-star-spacing": [
       "error",
@@ -132,18 +131,18 @@ module.exports = {
     ],
     "getter-return": "error",
     "guard-for-in": "error",
-    "id-match": [
-      "error",
-      "^(?![iI]s[A-Z])(([A-Z]?[a-z]+)+[A-Z]?|[A-Z](_?[A-Z])+)$",
-      {
-        "onlyDeclarations": true
-      }
-    ],
     "id-length": [
       "error",
       {
         "min": 2,
         "properties": "never"
+      }
+    ],
+    "id-match": [
+      "error",
+      "^(?![iI]s[A-Z])(([A-Z]?[a-z]+)+[A-Z]?|[A-Z](_?[A-Z])+)$",
+      {
+        "onlyDeclarations": true
       }
     ],
     "import/default": "error",
@@ -341,8 +340,8 @@ module.exports = {
     "no-unused-vars": [
       "error",
       {
-        "ignoreRestSiblings": true,
-        "caughtErrors": "none"
+        "caughtErrors": "none",
+        "ignoreRestSiblings": true
       }
     ],
     "no-use-before-define": "error",
@@ -357,6 +356,63 @@ module.exports = {
     "no-void": "error",
     "no-whitespace-before-property": "error",
     "no-with": "error",
+    "node/callback-return": "error",
+    "node/exports-style": [
+      "error",
+      "module.exports"
+    ],
+    "node/file-extension-in-import": [
+      "error",
+      "never"
+    ],
+    "node/no-callback-literal": "error",
+    "node/no-deprecated-api": "error",
+    "node/no-exports-assign": "error",
+    "node/no-extraneous-import": "error",
+    "node/no-extraneous-require": "error",
+    "node/no-missing-import": "error",
+    "node/no-missing-require": "error",
+    "node/no-mixed-requires": [
+      "error",
+      {
+        "allowCall": true
+      }
+    ],
+    "node/no-new-require": "error",
+    "node/no-process-exit": "error",
+    "node/no-sync": "error",
+    "node/no-unsupported-features/es-builtins": "error",
+    "node/no-unsupported-features/node-builtins": "error",
+    "node/prefer-global/buffer": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/console": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/process": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/text-decoder": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/text-encoder": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/url": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/url-search-params": [
+      "error",
+      "always"
+    ],
+    "node/prefer-promises/dns": "error",
+    "node/prefer-promises/fs": "error",
     "object-curly-spacing": [
       "error",
       "always"
@@ -395,13 +451,13 @@ module.exports = {
     "prefer-destructuring": [
       "error",
       {
-        "VariableDeclarator": {
-          "array": true,
-          "object": true
-        },
         "AssignmentExpression": {
           "array": false,
           "object": false
+        },
+        "VariableDeclarator": {
+          "array": true,
+          "object": true
         }
       }
     ],
@@ -442,22 +498,52 @@ module.exports = {
       "error",
       "last"
     ],
-    "sort-imports-es6-autofix/sort-imports-es6": [
-      "error",
-      {
-        "ignoreCase": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "none",
-          "all",
-          "multiple",
-          "single"
-        ]
-      }
-    ],
     "sort-class-members/sort-class-members": [
       "error",
       {
+        "groups": {
+          "event-handlers": [
+            {
+              "name": "/^handle.+/",
+              "static": false,
+              "type": "method"
+            }
+          ],
+          "get-methods": [
+            {
+              "name": "/^get.*$/",
+              "static": false,
+              "type": "method"
+            }
+          ],
+          "private-properties": [
+            {
+              "name": "/undefined/",
+              "type": "method"
+            }
+          ],
+          "set-methods": [
+            {
+              "name": "/^set.*$/",
+              "static": false,
+              "type": "method"
+            }
+          ],
+          "static-get-methods": [
+            {
+              "name": "/^get.*$/",
+              "static": true,
+              "type": "method"
+            }
+          ],
+          "static-set-methods": [
+            {
+              "name": "/^set.*$/",
+              "static": true,
+              "type": "method"
+            }
+          ]
+        },
         "order": [
           "[static-properties]",
           "[static-get-methods]",
@@ -472,50 +558,20 @@ module.exports = {
           "[set-methods]",
           "[methods]",
           "[event-handlers]"
-        ],
-        "groups": {
-          "static-get-methods": [
-            {
-              "name": "/^get.*$/",
-              "type": "method",
-              "static": true
-            }
-          ],
-          "static-set-methods": [
-            {
-              "name": "/^set.*$/",
-              "type": "method",
-              "static": true
-            }
-          ],
-          "private-properties": [
-            {
-              "name": "/undefined/",
-              "type": "method"
-            }
-          ],
-          "get-methods": [
-            {
-              "name": "/^get.*$/",
-              "type": "method",
-              "static": false
-            }
-          ],
-          "set-methods": [
-            {
-              "name": "/^set.*$/",
-              "type": "method",
-              "static": false
-            }
-          ],
-          "event-handlers": [
-            {
-              "name": "/^handle.+/",
-              "type": "method",
-              "static": false
-            }
-          ]
-        }
+        ]
+      }
+    ],
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ]
       }
     ],
     "space-before-blocks": [
@@ -526,13 +582,9 @@ module.exports = {
       "error",
       "never"
     ],
-    "spaced-comment": [
-      "error",
-      "always"
-    ],
     "space-in-parens": [
       "error",
-      "never",
+      "never"
     ],
     "space-infix-ops": "error",
     "space-unary-ops": [
@@ -540,6 +592,10 @@ module.exports = {
       {
         "words": true
       }
+    ],
+    "spaced-comment": [
+      "error",
+      "always"
     ],
     "switch-colon-spacing": [
       "error",

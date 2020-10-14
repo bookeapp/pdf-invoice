@@ -1,5 +1,5 @@
 import { DATE_FORMAT, DEFAULT_LANGUAGE, LOCALES_PATH, MONEY_STRING_PRECISION } from "../config";
-import fs from "fs";
+import fs from "fs/promises";
 import moment from "moment";
 import path from "path";
 
@@ -32,9 +32,9 @@ export default class Utils {
     });
   }
 
-  static loadLangFile(lang) {
+  static async loadLangFile(lang) {
     const langFile = path.join(LOCALES_PATH, `${lang}.json`);
-    if (fs.existsSync(langFile)) return fs.readFileSync(langFile);
+    if (await fs.exists(langFile)) return fs.readFile(langFile);
     return Utils.loadLangFile(DEFAULT_LANGUAGE);
   }
   
