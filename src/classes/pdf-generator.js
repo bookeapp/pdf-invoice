@@ -1,5 +1,5 @@
-import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config";
-import Utils from "./utils";
+import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
+import Utils from "./utils.js";
 import htmlToPdf from "html-pdf";
 import moment from "moment";
 import pug from "pug";
@@ -17,14 +17,16 @@ export default class PdfGenerator {
     this.sender = sender;
     this.recipient = recipient;
     this.global = global;
-    this.texts = JSON.parse(Utils.loadLangFile(lang));
+    this.lang = lang;
   }
 
-  getSellInvoice(fileName = null) {
+  async getSellInvoice(fileName = null) {
+    await this.loadTexts();
     return this.getInvoice(fileName, TEMPLATES.SELL_INVOICE_PATH);
   }
 
-  getBuyInvoice(fileName = null) {
+  async getBuyInvoice(fileName = null) {
+    await this.loadTexts();
     return this.getInvoice(fileName, TEMPLATES.BUY_INVOICE_PATH);
   }
 
@@ -69,5 +71,9 @@ export default class PdfGenerator {
       if (fileName) pdf.toFile(fileName, callback);
       else pdf.toBuffer(callback);
     });
+  }
+
+  async loadTexts() {
+    this.texts = JSON.parse(await Utils.loadLangFile(this.lang));
   }
 }

@@ -1,4 +1,4 @@
-import { DATE_FORMAT, DEFAULT_LANGUAGE, LOCALES_PATH, MONEY_STRING_PRECISION } from "../config";
+import { DATE_FORMAT, DEFAULT_LANGUAGE, LOCALES_PATH, MONEY_STRING_PRECISION } from "../config.js";
 import fs from "fs/promises";
 import moment from "moment";
 import path from "path";
@@ -34,7 +34,7 @@ export default class Utils {
 
   static async loadLangFile(lang) {
     const langFile = path.join(LOCALES_PATH, `${lang}.json`);
-    if (await fs.exists(langFile)) return fs.readFile(langFile);
+    if (await fs.stat(langFile)) return fs.readFile(langFile);
     return Utils.loadLangFile(DEFAULT_LANGUAGE);
   }
   

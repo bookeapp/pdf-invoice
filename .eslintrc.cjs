@@ -363,7 +363,7 @@ module.exports = {
     ],
     "node/file-extension-in-import": [
       "error",
-      "never"
+      "always"
     ],
     "node/no-callback-literal": "error",
     "node/no-deprecated-api": "error",
