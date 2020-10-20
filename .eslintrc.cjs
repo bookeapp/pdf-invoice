@@ -441,6 +441,44 @@ module.exports = {
       "error",
       "never"
     ],
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "const",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "let",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "var",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "const"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "let"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "var"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
     "prefer-arrow-callback": "error",
     "prefer-const": [
       "error",
