@@ -121,6 +121,10 @@ module.exports = {
       "error",
       "expression"
     ],
+    "function-call-argument-newline": [
+      "warn",
+      "consistent"
+    ],
     "function-paren-newline": [
       "error",
       "consistent"
