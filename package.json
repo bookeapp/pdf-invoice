@@ -1,5 +1,5 @@
 {
-  "name": "generate-pdf",
+  "name": "pdf-invoice",
   "private": true,
   "main": "src/index.js",
   "type": "module",
