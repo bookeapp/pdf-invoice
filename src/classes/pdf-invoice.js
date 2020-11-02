@@ -4,13 +4,13 @@ import htmlToPdf from "html-pdf";
 import moment from "moment";
 import pug from "pug";
 
-export default class PdfGenerator {
+export default class PdfInvoice {
   static createSellInvoice({ fileName, ...restParams }) {
-    return (new PdfGenerator(restParams)).getSellInvoice(fileName);
+    return (new PdfInvoice(restParams)).getSellInvoice(fileName);
   }
   
   static createBuyInvoice({ fileName, ...restParams }) {
-    return (new PdfGenerator(restParams)).getBuyInvoice(fileName);
+    return (new PdfInvoice(restParams)).getBuyInvoice(fileName);
   }
 
   constructor({ sender, recipient, global, lang = DEFAULT_LANGUAGE }) {

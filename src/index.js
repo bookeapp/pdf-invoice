@@ -1,4 +1,4 @@
 /* eslint-disable filenames/match-exported */
-import PdfGenerator from "./classes/pdf-generator.js";
+import PdfInvoice from "./classes/pdf-invoice.js";
 
-export default PdfGenerator;
+export default PdfInvoice;
