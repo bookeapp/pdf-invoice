@@ -122,7 +122,7 @@ module.exports = {
       "expression"
     ],
     "function-call-argument-newline": [
-      "warn",
+      "error",
       "consistent"
     ],
     "function-paren-newline": [
@@ -446,7 +446,7 @@ module.exports = {
       "never"
     ],
     "padding-line-between-statements": [
-      "warn",
+      "error",
       {
         "blankLine": "always",
         "prev": "const",
