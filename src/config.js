@@ -21,6 +21,7 @@ export const TEMPLATES = {
 };
 
 export default {
+  DIR_NAME,
   DEFAULT_LANGUAGE,
   DEFAULT_INVOICE_NUMBER_FORMAT,
   DATE_FORMAT,

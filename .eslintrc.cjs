@@ -369,6 +369,7 @@ module.exports = {
       "error",
       "always"
     ],
+    "node/global-require": "error",
     "node/no-callback-literal": "error",
     "node/no-deprecated-api": "error",
     "node/no-exports-assign": "error",
@@ -524,7 +525,6 @@ module.exports = {
       "double"
     ],
     "radix": "error",
-    "require-atomic-updates": "error",
     "require-await": "error",
     "require-yield": "error",
     "rest-spread-spacing": [
