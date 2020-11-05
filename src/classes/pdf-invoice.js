@@ -1,4 +1,4 @@
-import { DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
+import { DEFAULT_DUE_DATE_DAYS_OFFSET, DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
 import Utils from "./utils.js";
 import htmlToPdf from "html-pdf";
 import moment from "moment";
@@ -58,6 +58,7 @@ export default class PdfInvoice {
       globalCurrency: this.global.currency,
       globalDescription: this.global.description,
       globalIssueDate: Utils.formatDate(this.global.issueDate),
+      globalDueDate: Utils.formatDate(this.global.dueDate || moment().add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")),
       globalTaxDate: Utils.formatDate(this.global.taxDate),
       globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),
       globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates)

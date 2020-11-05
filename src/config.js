@@ -9,6 +9,8 @@ export const DEFAULT_INVOICE_NUMBER_FORMAT = "YYYYMMDDHHmmSS";
 
 export const DATE_FORMAT = "DD.MM.YYYY";
 
+export const DEFAULT_DUE_DATE_DAYS_OFFSET = 14;
+
 export const MONEY_STRING_PRECISION = 2;
 
 export const LOCALES_PATH = `${DIR_NAME}/../static/locales`;

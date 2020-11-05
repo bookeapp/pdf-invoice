@@ -10,6 +10,7 @@
   "description": "Popis",
   "disclaimer": "Odmítnutí odpovědnosti",
   "disclaimerMessage": "Toto je PŘÍKLAD faktury pouze pro demonstrační účely",
+  "dueDate": "Datum splatnosti",
   "exampleInvoice": "Příklad faktury",
   "invoice": "Faktura",
   "invoiceDate": "Datum vystavení",

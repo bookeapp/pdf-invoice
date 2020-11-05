@@ -259,6 +259,10 @@ html
           div
             strong #{invoiceDate}: 
             | #{globalIssueDate}
+        if globalDueDate
+          div
+            strong #{dueDate}: 
+            | #{globalDueDate}
         if globalTaxDate
           div
             strong #{dateOfTaxableSupply}: 

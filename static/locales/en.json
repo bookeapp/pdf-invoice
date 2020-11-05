@@ -10,6 +10,7 @@
   "description": "Description",
   "disclaimer": "Disclaimer",
   "disclaimerMessage": "This is EXAMPLE of invoice for demo purposes",
+  "dueDate": "Due date",
   "exampleInvoice": "Example invoice",
   "invoice": "Invoice",
   "invoiceDate": "Invoice date",
