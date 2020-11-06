@@ -39,9 +39,13 @@ export default class Utils {
   static async loadLangFile(lang) {
     const langFile = path.join(LOCALES_PATH, `${lang}.json`);
 
-    if (await fs.stat(langFile)) return fs.readFile(langFile);
+    try {
+      await fs.access(langFile);
 
-    return Utils.loadLangFile(DEFAULT_LANGUAGE);
+      return fs.readFile(langFile);
+    } catch (error) {
+      return Utils.loadLangFile(DEFAULT_LANGUAGE);
+    }
   }
   
   static formatDate(date) {
