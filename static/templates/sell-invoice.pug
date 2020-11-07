@@ -212,14 +212,14 @@ html
         #from
           if senderBusinessName
             h3 #{senderBusinessName}
-          if senderVatId
-            div
-              strong #{vatId}: 
-              | #{senderVatId}
           if senderBusinessId
             div
               strong #{businessId}: 
               | #{senderBusinessId}
+          if senderVatId
+            div
+              strong #{vatId}: 
+              | #{senderVatId}
           if senderBankAccount
             div
               strong #{bankAccount}: 
@@ -233,14 +233,14 @@ html
         #to
           if recipientBusinessName
             h3 #{recipientBusinessName}
-          if recipientVatId
-            div
-            strong #{vatId}: 
-            | #{recipientVatId}
           if recipientBusinessId
             div
               strong #{businessId}: 
               | #{recipientBusinessId}
+          if recipientVatId
+            div
+            strong #{vatId}: 
+            | #{recipientVatId}
           if recipientBankAccount
             div
               strong #{bankAccount}: 

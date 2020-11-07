@@ -1,7 +1,7 @@
 {
   "address": "Adresa",
   "amountExpressedIn": "Částky jsou uvedeny",
-  "bankAccount": "Bankovní účet",
+  "bankAccount": "Číslo účtu",
   "base": "Cena bez DPH",
   "businessId": "IČO",
   "constantCode": "Konstantní symbol",
