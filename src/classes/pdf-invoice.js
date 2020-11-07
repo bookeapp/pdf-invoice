@@ -1,7 +1,9 @@
-import { DEFAULT_DUE_DATE_DAYS_OFFSET, DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, TEMPLATES } from "../config.js";
+import { DEFAULT_DUE_DATE_DAYS_OFFSET, DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, DIR_NAME, TEMPLATES } from "../config.js";
 import Utils from "./utils.js";
+import fs from "fs/promises";
 import htmlToPdf from "html-pdf";
 import moment from "moment";
+import path from "path";
 import pug from "pug";
 
 export default class PdfInvoice {
@@ -32,15 +34,20 @@ export default class PdfInvoice {
     return this.getInvoice(fileName, TEMPLATES.BUY_INVOICE_PATH);
   }
 
-  getInvoice(fileName, template) {
+  async getInvoice(fileName, template) {
     const currentDate = new Date();
 
     const compiledInvoice = pug.compileFile(template);
 
     const defaultInvoiceId = moment(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT);
 
+    const bookeLogoImage = await fs.readFile(path.join(DIR_NAME, "../static/images/logo.png"));
+
     const invoiceHtml = compiledInvoice({
       ...this.texts,
+      dirName: DIR_NAME,
+      currentYear: moment().year(),
+      logoUrl: `data:image/png;base64,${Buffer.from(bookeLogoImage).toString("base64")}`,
       recipientBusinessName: this.recipient.businessName,
       recipientBusinessAddress: this.recipient.businessAddress,
       recipientBusinessId: this.recipient.businessId,
@@ -64,8 +71,10 @@ export default class PdfInvoice {
       globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),
       globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates)
     });
+    
+    const document = this.getDocument(fileName, invoiceHtml);
 
-    return this.getDocument(fileName, invoiceHtml);
+    return document;
   }
 
   getDocument(fileName, invoiceHtml) {

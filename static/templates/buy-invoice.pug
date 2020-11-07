@@ -34,23 +34,39 @@ html
         padding: 4%;
       }
       #header {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
         padding-bottom: 1em;
-        border-bottom: 3px solid #c4183c;
+        border-bottom: 3px solid #007bff;
       }
-      #header > div {
+      #header > .logo {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: flex-end;
+        align-items: flex-end;
+      }
+      #header > .logo > img {
+        height: 3em;
+        vertical-align: text-bottom;
+      }
+      #header > .logo > b {
+        font-size: 2em;
+        color: #333;
+      }
+      #header > .numbers {
+        margin-left: auto;
         text-align: right;
       }
-      #header > div > p {
+      #header > .numbers > p {
         margin: 0.2em 0;
       }
-      #header > div > .invoiceNumber {
+      #header > .numbers > .invoiceNumber {
         font-size: 1.2em;
       }
-      #header > div > .invoiceNumber strong {
-        color: #c4183c;
-      }
-      #header > div > .extraNumber strong {
-        color: #999;
+      #header > .numbers > .extraNumber {
+        color: #777;
       }
       #fromTo {
         display: -webkit-flex;
@@ -108,12 +124,12 @@ html
         border-color: transparent transparent transparent #c4183c;
       }
       #fromTo > #to {
-        margin-right: 1em;
-        box-shadow: 0 0 0 2px #999 inset;
+        margin-left: 1em;
+        box-shadow: 0 0 0 2px #777 inset;
       }
       #fromTo > #to::before {
         content: "#{customer}";
-        background-color: #999;
+        background-color: #777;
       }
       #fromTo > #from > div,
       #fromTo > #to > div {
@@ -207,10 +223,13 @@ html
       }
     #container
       #header
-        div
+        div(class='logo')
+          img(src=`${logoUrl}`)/
+          b ooke AI
+        div(class='numbers')
           if globalInvoiceNumber
             p(class='invoiceNumber')
-              strong #{exampleInvoice} #: 
+              strong #{invoice} #: 
               | #{globalInvoiceNumber}
           if globalVsValue
             p(class='extraNumber')
@@ -316,5 +335,5 @@ html
          strong #{globalTotalAmounts.total} #{globalCurrency}
       #footer
         em
-          strong #{disclaimer}: 
-          | #{disclaimerMessage}!
+          strong Booke AI s.r.o. 
+          | #{currentYear}
