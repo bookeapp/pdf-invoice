@@ -49,6 +49,9 @@ html
       #header > div > .invoiceNumber strong {
         color: #c4183c;
       }
+      #header > div > .extraNumber strong {
+        color: #5a6169;
+      }
       #fromTo {
         display: -webkit-flex;
         display: flex;
@@ -204,11 +207,11 @@ html
               strong #{exampleInvoice} #: 
               | #{globalInvoiceNumber}
           if globalVsValue
-            p
+            p(class='extraNumber')
               strong #{variableSymbol}: 
               | #{globalVsValue}
           if globalKsValue
-            p
+            p(class='extraNumber')
               strong #{constantCode}: 
               | #{globalKsValue}
       #fromTo
