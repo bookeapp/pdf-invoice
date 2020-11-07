@@ -37,6 +37,8 @@ export default class PdfInvoice {
 
     const compiledInvoice = pug.compileFile(template);
 
+    const defaultInvoiceId = moment(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT);
+
     const invoiceHtml = compiledInvoice({
       ...this.texts,
       recipientBusinessName: this.recipient.businessName,
@@ -51,9 +53,8 @@ export default class PdfInvoice {
       senderVatId: this.sender.vatId,
       senderBankAccount: this.sender.bankAccount,
       senderBankCode: this.sender.bankCode,
-      globalInvoiceNumber: this.global.vsValue
-        || moment(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT),
-      globalVsValue: this.global.vsValue,
+      globalInvoiceNumber: this.global.invoiceNumber || this.global.vsValue || defaultInvoiceId,
+      globalVsValue: this.global.vsValue || defaultInvoiceId,
       globalKsValue: this.global.ksValue,
       globalCurrency: this.global.currency,
       globalDescription: this.global.description,
