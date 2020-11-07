@@ -50,7 +50,7 @@ html
         color: #c4183c;
       }
       #header > div > .extraNumber strong {
-        color: #5a6169;
+        color: #999;
       }
       #fromTo {
         display: -webkit-flex;
@@ -107,8 +107,13 @@ html
         border-style: solid;
         border-color: transparent transparent transparent #c4183c;
       }
+      #fromTo > #to {
+        margin-right: 1em;
+        box-shadow: 0 0 0 2px #999 inset;
+      }
       #fromTo > #to::before {
         content: "#{customer}";
+        background-color: #999;
       }
       #fromTo > #from > div,
       #fromTo > #to > div {

@@ -5,7 +5,7 @@ export const DIR_NAME = dirname(fileUrlToPath(import.meta.url));
 
 export const DEFAULT_LANGUAGE = "en";
 
-export const DEFAULT_INVOICE_NUMBER_FORMAT = "YYYYMMDDHHmmSS";
+export const DEFAULT_INVOICE_NUMBER_FORMAT = "MMDDHHmmSS";
 
 export const DATE_FORMAT = "DD.MM.YYYY";
 

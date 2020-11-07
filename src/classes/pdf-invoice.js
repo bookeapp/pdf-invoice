@@ -53,7 +53,7 @@ export default class PdfInvoice {
       senderVatId: this.sender.vatId,
       senderBankAccount: this.sender.bankAccount,
       senderBankCode: this.sender.bankCode,
-      globalInvoiceNumber: this.global.invoiceNumber || this.global.vsValue || defaultInvoiceId,
+      globalInvoiceNumber: this.global.invoiceNumber || this.global.vsValue || `B${defaultInvoiceId}`,
       globalVsValue: this.global.vsValue || defaultInvoiceId,
       globalKsValue: this.global.ksValue,
       globalCurrency: this.global.currency,
