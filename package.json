@@ -12,6 +12,7 @@
     "lint-fix": "eslint . --fix"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "html-pdf": "^2.2.0",
     "moment": "^2.26.0",
     "pug": "^3.0.0"

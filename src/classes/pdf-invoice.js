@@ -1,5 +1,6 @@
 import { DEFAULT_DUE_DATE_DAYS_OFFSET, DEFAULT_INVOICE_NUMBER_FORMAT, DEFAULT_LANGUAGE, DIR_NAME, TEMPLATES } from "../config.js";
 import Utils from "./utils.js";
+import axios from "axios";
 import fs from "fs/promises";
 import htmlToPdf from "html-pdf";
 import moment from "moment";
@@ -43,11 +44,12 @@ export default class PdfInvoice {
 
     const bookeLogoImage = await fs.readFile(path.join(DIR_NAME, "../static/images/logo.png"));
 
+    const customLogo = this.global.logoUrl ? (await axios.get(this.global.logoUrl, { responseType: "arraybuffer" })).data : null;
+
     const invoiceHtml = compiledInvoice({
       ...this.texts,
       dirName: DIR_NAME,
       currentYear: moment().year(),
-      logoUrl: `data:image/png;base64,${Buffer.from(bookeLogoImage).toString("base64")}`,
       recipientBusinessName: this.recipient.businessName,
       recipientBusinessAddress: this.recipient.businessAddress,
       recipientBusinessId: this.recipient.businessId,
@@ -60,16 +62,20 @@ export default class PdfInvoice {
       senderVatId: this.sender.vatId,
       senderBankAccount: this.sender.bankAccount,
       senderBankCode: this.sender.bankCode,
-      globalInvoiceNumber: this.global.invoiceNumber || this.global.vsValue || `B${defaultInvoiceId}`,
+      globalInvoiceNumber: this.global.invoiceNumber || this.global.vsValue || defaultInvoiceId,
       globalVsValue: this.global.vsValue || defaultInvoiceId,
       globalKsValue: this.global.ksValue,
       globalCurrency: this.global.currency,
       globalDescription: this.global.description,
+      globalLogoUrl: this.global.logoUrl === null
+        ? null
+        : `data:image/png;base64,${Buffer.from(customLogo || bookeLogoImage).toString("base64")}`,
       globalIssueDate: Utils.formatDate(this.global.issueDate),
       globalDueDate: Utils.formatDate(this.global.dueDate || moment().add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")),
       globalTaxDate: Utils.formatDate(this.global.taxDate),
       globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),
-      globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates)
+      globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates),
+      globalFooterText: this.global.footerText
     });
     
     const document = this.getDocument(fileName, invoiceHtml);
