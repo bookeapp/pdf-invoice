@@ -71,7 +71,9 @@ export default class PdfInvoice {
         ? null
         : `data:image/png;base64,${Buffer.from(customLogo || bookeLogoImage).toString("base64")}`,
       globalIssueDate: Utils.formatDate(this.global.issueDate),
-      globalDueDate: Utils.formatDate(this.global.dueDate || moment().add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")),
+      globalDueDate: Utils.formatDate(
+        this.global.dueDate || moment(this.global.issueDate).add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")
+      ),
       globalTaxDate: Utils.formatDate(this.global.taxDate),
       globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),
       globalTotalAmounts: Utils.getTotalAmounts(this.global.amountVatRates),
