@@ -40,7 +40,7 @@ export default class PdfInvoice {
 
     const compiledInvoice = pug.compileFile(template);
 
-    const defaultInvoiceId = moment(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT);
+    const defaultInvoiceId = moment.utc(this.global.issueDate || currentDate).format(DEFAULT_INVOICE_NUMBER_FORMAT);
 
     const bookeLogoImage = await fs.readFile(path.join(DIR_NAME, "../static/images/logo.png"));
 
@@ -49,7 +49,7 @@ export default class PdfInvoice {
     const invoiceHtml = compiledInvoice({
       ...this.texts,
       dirName: DIR_NAME,
-      currentYear: moment().year(),
+      currentYear: moment.utc().year(),
       recipientBusinessName: this.recipient.businessName,
       recipientBusinessAddress: this.recipient.businessAddress,
       recipientBusinessId: this.recipient.businessId,
@@ -72,7 +72,7 @@ export default class PdfInvoice {
         : `data:image/png;base64,${Buffer.from(customLogo || bookeLogoImage).toString("base64")}`,
       globalIssueDate: Utils.formatDate(this.global.issueDate),
       globalDueDate: Utils.formatDate(
-        this.global.dueDate || moment(this.global.issueDate).add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")
+        this.global.dueDate || moment.utc(this.global.issueDate).add(DEFAULT_DUE_DATE_DAYS_OFFSET, "days")
       ),
       globalTaxDate: Utils.formatDate(this.global.taxDate),
       globalAmountVatRates: Utils.getVatRates(this.global.amountVatRates),

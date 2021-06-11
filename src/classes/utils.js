@@ -49,6 +49,6 @@ export default class Utils {
   }
   
   static formatDate(date) {
-    return date && moment(date).format(DATE_FORMAT);
+    return date && moment.utc(date).format(DATE_FORMAT);
   }
 }
